@@ -1,0 +1,27 @@
+{
+  "connectivity_backend": "mne_connectivity",
+  "method": "wpli",
+  "mode": "multitaper",
+  "bands_hz": {
+    "theta": [
+      4.0,
+      8.0
+    ],
+    "alpha": [
+      8.0,
+      13.0
+    ],
+    "beta": [
+      13.0,
+      30.0
+    ]
+  },
+  "reject_ptp_uv": 250.0,
+  "eyes_keep": "closed",
+  "unit_of_analysis": "epoch (wPLI computed across sliding windows within each epoch)",
+  "edge_vectorization": "upper triangle, no diagonal",
+  "win_len_sec": 1.0,
+  "win_step_sec": 0.5,
+  "edges_csv": "/Users/I743312/Documents/ketamine project/data/derived/features/features_B_wpli_edges_epoch_sliding.csv",
+  "matrices_npz": "/Users/I743312/Documents/ketamine project/data/derived/features/features_B_wpli_matrices_epoch_sliding.npz"
+}

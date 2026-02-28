@@ -1,0 +1,24 @@
+{
+  "bands_hz": {
+    "delta": [
+      1.0,
+      4.0
+    ],
+    "theta": [
+      4.0,
+      8.0
+    ],
+    "alpha": [
+      8.0,
+      13.0
+    ],
+    "beta": [
+      13.0,
+      30.0
+    ]
+  },
+  "reject_ptp_uv": 250.0,
+  "eyes_keep": "closed",
+  "feature_file": "/Users/I743312/Documents/ketamine project/data/derived/features/features_A_bandpower_epochwise.csv",
+  "unit_of_analysis": "epoch (one row per kept epoch)"
+}
