@@ -1,0 +1,16 @@
+model,fold,best_score_inner,max_depth,max_features,min_samples_leaf,min_samples_split,n_estimators
+A_banana_bandpower,1,0.6611029009304872,10,0.8,1,4,200
+A_banana_bandpower,2,0.5444818463783981,5,0.8,1,2,400
+A_banana_bandpower,3,0.5816798941798942,5,0.8,1,2,1000
+A_banana_bandpower,4,0.6262584382411969,10,sqrt,1,4,600
+A_banana_bandpower,5,0.6748100255427842,5,sqrt,1,2,200
+B_banana_wpli,1,0.4890448823207444,10,sqrt,2,8,400
+B_banana_wpli,2,0.5654625068418172,5,sqrt,2,8,200
+B_banana_wpli,3,0.611276455026455,20,0.8,1,4,200
+B_banana_wpli,4,0.5528562306148513,5,sqrt,1,10,200
+B_banana_wpli,5,0.6295130906768838,5,sqrt,2,8,400
+C_banana_A_plus_B,1,0.6394086389345011,10,0.8,4,2,200
+C_banana_A_plus_B,2,0.567948595146871,5,0.8,2,10,200
+C_banana_A_plus_B,3,0.6086309523809523,10,0.8,1,10,200
+C_banana_A_plus_B,4,0.6344973544973544,10,0.3,1,2,400
+C_banana_A_plus_B,5,0.682667168399927,5,sqrt,4,2,200

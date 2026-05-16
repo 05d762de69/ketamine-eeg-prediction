@@ -5,3 +5,5 @@ data/raw/
 .venv/
 __pycache__/
 .ipynb_checkpoints/
+.claude/
+archive/
