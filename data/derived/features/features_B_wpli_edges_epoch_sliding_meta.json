@@ -22,6 +22,6 @@
   "edge_vectorization": "upper triangle, no diagonal",
   "win_len_sec": 1.0,
   "win_step_sec": 0.5,
-  "edges_csv": "/Users/I743312/Documents/ketamine project/data/derived/features/features_B_wpli_edges_epoch_sliding.csv",
-  "matrices_npz": "/Users/I743312/Documents/ketamine project/data/derived/features/features_B_wpli_matrices_epoch_sliding.npz"
+  "edges_csv": "data/derived/features/features_B_wpli_edges_epoch_sliding.csv",
+  "matrices_npz": "data/derived/features/features_B_wpli_matrices_epoch_sliding.npz"
 }

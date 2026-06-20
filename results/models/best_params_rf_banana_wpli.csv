@@ -1,6 +1,0 @@
-model,fold,best_score_inner,max_depth,max_features,min_samples_leaf,min_samples_split,n_estimators
-B_banana_wpli,1,0.48025884875022806,20,log2,2,9,678
-B_banana_wpli,2,0.55706964969896,20,sqrt,2,10,564
-B_banana_wpli,3,0.6107804232804233,20,0.5,1,9,467
-B_banana_wpli,4,0.5409852216748768,5,sqrt,4,6,252
-B_banana_wpli,5,0.6205731162196679,5,sqrt,3,8,344

@@ -1,0 +1,30 @@
+# Citation metadata. Fields marked TODO should be completed before the
+# repository is made public. See https://citation-file-format.github.io/
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+title: "Predicting ketamine vs. awake state from resting EEG power and connectivity"
+version: 1.0.0
+date-released: 2026-06-19
+license: MIT
+type: software
+authors:
+  - family-names: "Schaetzle"
+    given-names: "Hannes"
+    orcid: "https://orcid.org/0009-0009-8035-3685"
+    affiliation: "Department of Psychology, Education and Child Studies (DEPCS), Erasmus University Rotterdam, Rotterdam, Netherlands"
+repository-code: "https://github.com/05d762de69/ketamine-eeg-prediction"
+# Optional: link to the associated preprint / paper once available.
+# preferred-citation:
+#   type: article
+#   title: "TODO paper title"
+#   authors:
+#     - family-names: "Schaetzle"
+#       given-names: "Hannes"
+#   year: 2026
+#   doi: "TODO"
+keywords:
+  - EEG
+  - ketamine
+  - connectivity
+  - weighted phase-lag index
+  - machine learning

@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ketamine-eeg-prediction"
+version = "1.0.0"
+description = "Predicting ketamine vs. awake state from resting EEG power and connectivity features"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Hannes Schaetzle", email = "hannes.schaetzle@icloud.com" },
+]
+keywords = ["EEG", "ketamine", "connectivity", "wPLI", "machine-learning", "neuroscience"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+]
+
+# Pinned to the versions the published results were produced with.
+dependencies = [
+    "numpy==2.2.6",
+    "scipy==1.15.3",
+    "pandas==2.3.3",
+    "scikit-learn==1.7.2",
+    "matplotlib==3.10.8",
+    "joblib==1.5.3",
+    "statsmodels==0.14.6",
+    "mne==1.12.1",
+    "mne-connectivity==0.8.1",
+]
+
+[project.optional-dependencies]
+notebooks = [
+    "jupyter",
+    "nbconvert==7.17.1",
+    "nbformat==5.10.4",
+    "ipykernel",
+]
+
+[project.urls]
+Repository = "https://github.com/05d762de69/ketamine-eeg-prediction"
+
+[tool.setuptools.packages.find]
+where = ["src"]

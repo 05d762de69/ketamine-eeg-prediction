@@ -1,9 +1,24 @@
-# data
+# --- Raw EEG data (human-subject; not distributed -- see README) -----------
 data/raw/
 
-# environments
-.venv/
+# --- Python -----------------------------------------------------------------
 __pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.env
+
+# --- Jupyter ----------------------------------------------------------------
 .ipynb_checkpoints/
+
+# --- Caches / scratch -------------------------------------------------------
+.cache/
 .claude/
 archive/
+*.log
+
+# --- OS ---------------------------------------------------------------------
+.DS_Store

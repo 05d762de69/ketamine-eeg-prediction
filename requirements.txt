@@ -1,0 +1,17 @@
+# Exact versions the published results were produced with (Python 3.10).
+# Install with:  pip install -r requirements.txt  &&  pip install -e .
+numpy==2.2.6
+scipy==1.15.3
+pandas==2.3.3
+scikit-learn==1.7.2
+matplotlib==3.10.8
+joblib==1.5.3
+statsmodels==0.14.6
+mne==1.12.1
+mne-connectivity==0.8.1
+
+# Notebook execution (demo figures / tables)
+jupyter
+nbconvert==7.17.1
+nbformat==5.10.4
+ipykernel

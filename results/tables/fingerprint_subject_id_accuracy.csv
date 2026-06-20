@@ -1,0 +1,5 @@
+feature_set,train_cond,test_cond,n_train,n_test,balanced_acc
+wPLI,awake,ketamine,141,135,0.36549737027678203
+wPLI,ketamine,awake,135,141,0.42043956043956043
+bandpower,awake,ketamine,141,135,0.40198624904507263
+bandpower,ketamine,awake,135,141,0.4585714285714285
