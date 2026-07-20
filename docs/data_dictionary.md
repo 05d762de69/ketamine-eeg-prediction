@@ -34,26 +34,32 @@ loading raw recordings.
 Per-fold cross-validation outputs. `results_*` = per-fold metrics
 (`balanced_accuracy`, `roc_auc`, `accuracy`, confusion counts); `predictions_*`
 = per-epoch out-of-fold predictions; `best_params_*` = selected hyper-parameters.
+Every row carries an `estimator` column (`rf` / `svm` / `xgb`) and there are 10
+outer folds (leave-one-subject-out); `best_params_*` columns are prefixed by the
+pipeline step (`rf__*`, `svc__*`, `xgb__*`, plus `pca_n_components` for B/C).
 
 | Stem | Models |
 |------|--------|
-| `*_rf_nested_groupkfold_Aepoch_BwpliEpochSliding.csv` | Full-montage A / B / C (`scripts/03`). |
-| `*_rf_channel_subsets.csv` | Reduced montages × feature sets (`scripts/04`). |
+| `*_nested_groupkfold_Aepoch_BwpliEpochSliding.csv` | Full-montage A / B / C × {rf, svm, xgb} (`scripts/03`). |
+| `*_channel_subsets.csv` | Reduced montages × feature sets × {rf, svm, xgb} (`scripts/04`). |
 
 ## `results/permutation/`
 
 | File | Contents |
 |------|----------|
-| `perm_summary_rf_nested_groupkfold_Aepoch_BwpliEpochSliding.csv` | Observed vs null mean and two-sided permutation / t-test p-values for balanced accuracy, ROC-AUC and accuracy (full-montage A/B/C). |
-| `perm_summary_channel_subsets.csv` | Same, per reduced montage × feature set. |
-| `null_{bacc,auc,acc}_<model>.npy` | Permutation null distributions (full montage). |
-| `null_channel_subsets_{bacc,auc}.npz` | Permutation null distributions (subsets). |
+| `perm_summary_nested_groupkfold_Aepoch_BwpliEpochSliding.csv` | Observed vs null mean and two-sided permutation / t-test p-values for balanced accuracy, ROC-AUC and accuracy (full-montage A/B/C), one row per `estimator` × model. |
+| `perm_summary_channel_subsets.csv` | Observed vs null mean and two-sided permutation p-values for balanced accuracy and ROC-AUC (no accuracy / t-test columns), per `estimator` × reduced montage × feature set. |
+| `null_{bacc,auc,acc}_<estimator>_<model>.npy` | Permutation null distributions (full montage), one file per estimator × model. |
+| `null_channel_subsets_{bacc,auc}.npz` | Permutation null distributions (subsets); array keys are `"<estimator>__<model>"`. |
 
 ## `results/tables/`
 
 | File | Contents |
 |------|----------|
-| `main_model_performance.csv` | Headline A/B/C performance (mean ± SD) with permutation p-values. |
+| `main_model_performance.csv` | Headline A/B/C performance (mean ± SD) with permutation p-values (random-forest estimator). |
+| `model_performance_by_estimator.csv` | Full-montage A/B/C performance (mean ± SD, permutation p) for each estimator (rf/svm/xgb). |
+| `subset_performance_by_estimator.csv` | Channel-subset performance (mean ± SD, permutation p) for each estimator × subset × feature set. |
+| `sensitivity_specificity_by_estimator.csv` | Per-fold-averaged sensitivity (ketamine detection, TP/(TP+FN)) and specificity (awake correct, TN/(TN+FP)), ± SD, for each estimator × montage (`full_62ch` + 4 subsets) × feature set; `(sensitivity+specificity)/2` = balanced accuracy. |
 | `psd_band_wilcoxon.csv` | Per-band Wilcoxon signed-rank tests (ketamine − awake log power), Holm-corrected. |
 | `feat_B_edge_importance_table.csv` | Back-projected random-forest importance for every wPLI edge (band, channel pair, importance). |
 | `fingerprint_edge_variance.csv` | Per-edge variance decomposition (between-subject, drug shared/idiosyncratic, residual, ICC, transferability, ratios). |

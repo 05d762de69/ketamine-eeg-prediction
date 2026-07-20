@@ -19,6 +19,7 @@ venv/
 .claude/
 archive/
 *.log
+results/_smoke/          # KETAMINE_SMOKE=1 fast-mode outputs (throwaway)
 
 # --- OS ---------------------------------------------------------------------
 .DS_Store

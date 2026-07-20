@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ketamine-eeg-prediction"
 version = "1.0.0"
-description = "Predicting ketamine vs. awake state from resting EEG power and connectivity features"
+description = "Decoding the subanaesthetic ketamine state from EEG: spatial compression of spectral power and non-transferable phase connectivity"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -26,6 +26,7 @@ dependencies = [
     "scipy==1.15.3",
     "pandas==2.3.3",
     "scikit-learn==1.7.2",
+    "xgboost==3.2.0",
     "matplotlib==3.10.8",
     "joblib==1.5.3",
     "statsmodels==0.14.6",

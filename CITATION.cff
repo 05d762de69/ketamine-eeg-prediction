@@ -2,16 +2,23 @@
 # repository is made public. See https://citation-file-format.github.io/
 cff-version: 1.2.0
 message: "If you use this software or its results, please cite it as below."
-title: "Predicting ketamine vs. awake state from resting EEG power and connectivity"
+title: "Decoding the subanaesthetic ketamine state from EEG: spatial compression of spectral power and non-transferable phase connectivity"
 version: 1.0.0
 date-released: 2026-06-19
 license: MIT
 type: software
 authors:
-  - family-names: "Schaetzle"
+  - family-names: "Schätzle"
     given-names: "Hannes"
+    email: "hannes.schaetzle@icloud.com"
     orcid: "https://orcid.org/0009-0009-8035-3685"
     affiliation: "Department of Psychology, Education and Child Studies (DEPCS), Erasmus University Rotterdam, Rotterdam, Netherlands"
+  - family-names: "Wegner"
+    name-particle: "von"
+    given-names: "Frederic"
+    email: "f.vonwegner@unsw.edu.au"
+    orcid: "https://orcid.org/0000-0002-6779-9959"
+    affiliation: "School of Biomedical Sciences, Faculty of Medicine and Health, University of New South Wales (UNSW Sydney), Sydney, NSW, Australia"
 repository-code: "https://github.com/05d762de69/ketamine-eeg-prediction"
 # Optional: link to the associated preprint / paper once available.
 # preferred-citation:

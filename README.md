@@ -1,4 +1,4 @@
-# Predicting ketamine vs. awake state from resting EEG
+# Decoding the subanaesthetic ketamine state from EEG: spatial compression of spectral power and non-transferable phase connectivity
 
 Machine-learning analysis of resting-state EEG recorded before and after
 sub-anaesthetic **ketamine**. The project asks whether the drug state can be
@@ -18,6 +18,11 @@ largely idiosyncratic, whereas the power drug effect is shared across subjects.
   connectivity (set B) sits at chance; combining them (set C) does not beat
   power alone. Exact numbers, with permutation p-values, are in
   [`results/tables/main_model_performance.csv`](results/tables).
+- **Not an algorithm artefact.** The power-yes / connectivity-no pattern holds
+  across three estimator families — random forest, RBF-SVM and XGBoost — so the
+  null connectivity result is not specific to the random forest
+  ([`results/tables/model_performance_by_estimator.csv`](results/tables),
+  [`results/figures/estimator_comparison_bacc.png`](results/figures)).
 - **A sparse montage suffices.** A handful of lateral / frontal electrodes
   recovers most of the full-montage power performance
   ([`results/figures/channel_subsets_heatmap.png`](results/figures)).
@@ -109,11 +114,15 @@ stages are also available: `make models`, `make subsets`, `make importance`,
 | **Fig** PSD per subject (`psd_per_subject.png`) | `notebooks/01` |
 | **Fig** channel-subset heatmap (`channel_subsets_heatmap.png`) | `notebooks/02_drug_prediction_results.ipynb` |
 | **Fig** channel-subset per-fold strip (`channel_subsets_per_fold.png`) | `notebooks/02` |
+| **Fig** estimator comparison, RF/SVM/XGB (`estimator_comparison_bacc.png`) | `notebooks/02` |
+| **Fig** per-subject balanced accuracy under LOSO, ×3 classifiers (`per_subject_bacc.png`) | `notebooks/02` |
 | **Fig** wPLI edge-importance heatmap (`feat_B_edge_importance_heatmap.png`) | `notebooks/03_wpli_edge_importance.ipynb` |
 | **Fig** fingerprint subject-ID confusion (`fingerprint_subject_id_confusion.png`) | `notebooks/04_fingerprinting.ipynb` |
 | **Fig** fingerprint transferability (`fingerprint_transferability.png`) | `notebooks/04` |
 | **Fig** fingerprint variance decomposition (`fingerprint_variance_decomposition.png`) | `notebooks/04` |
 | **Table** full-montage A/B/C performance (`main_model_performance.csv`) | `notebooks/02` ← `scripts/03` |
+| **Table** performance by estimator, RF/SVM/XGB (`model_performance_by_estimator.csv`, `subset_performance_by_estimator.csv`) | `notebooks/02` ← `scripts/03`, `scripts/04` |
+| **Table** sensitivity / specificity per classifier (`sensitivity_specificity_by_estimator.csv`) | `notebooks/02` ← `scripts/03`, `scripts/04` |
 | **Table** wPLI edge importance (`feat_B_edge_importance_table.csv`) | `scripts/05` |
 | **Table** fingerprint variance / transferability / subject-ID accuracy (`fingerprint_*.csv`) | `scripts/06`, `scripts/07` |
 | **Test** PSD spatio-spectral cluster permutation test | `notebooks/01` |
@@ -128,13 +137,19 @@ stages are also available: `make models`, `make subsets`, `make importance`,
   and 5 scalp regions, per epoch (24 features). *B* — wPLI connectivity for
   theta/alpha/beta over all 62-channel pairs, computed with sliding windows
   within each epoch (5673 edges). *C* — A and B concatenated.
-- **Classification.** Random forest with subject-aware **nested** cross-
-  validation (5 outer / 4 inner GroupKFold, grouped by subject) and an
-  exhaustive hyper-parameter grid scored by balanced accuracy. Connectivity
-  features are reduced with PCA(100) inside the cross-validation.
+- **Classification.** Three estimator families — random forest, RBF-SVM and
+  XGBoost — are compared so that a null (or positive) result cannot be blamed on
+  one algorithm. Each uses subject-aware **nested** cross-validation: because
+  there are exactly 10 subjects, the outer GroupKFold is 10-fold
+  **leave-one-subject-out** (a subject-grouped fold count cannot exceed the
+  number of subjects without leaking), with an inner 4-fold GroupKFold grid
+  search scored by balanced accuracy. The high-dimensional connectivity sets (B,
+  C) are reduced with a shared PCA(100) inside the cross-validation for every
+  estimator, so only the classifier varies; SVM inputs are standardised.
 - **Significance.** Label permutation with **subject-aware**, recording-level
-  shuffles (1000 permutations), refitting the selected hyper-parameters per
-  fold; centred two-sided p-values for balanced accuracy, ROC-AUC and accuracy.
+  shuffles (1000 permutations), refitting the selected pipeline per fold; centred
+  two-sided p-values for balanced accuracy, ROC-AUC and accuracy — computed per
+  estimator.
 - **Fingerprinting.** Per-feature variance decomposition into between-subject
   identity, a cross-subject-shared (transferable) drug effect, an idiosyncratic
   drug effect and residual epoch variance, plus a condition-aware subject-ID

@@ -8,11 +8,15 @@ forest's PCA-component importances onto the original 5673-edge space via the
 squared PCA loadings (squared to avoid sign-flip cancellation across folds) and
 averages across folds. The result is a per-edge importance for theta/alpha/beta.
 
+Edge importance is derived from the random-forest ``feature_importances_``, so
+this analysis is intrinsically RF-specific: it reads the ``estimator == "rf"``
+rows of the (now multi-estimator) best-parameters table.
+
 Inputs (tracked derived data -- no raw EEG required):
     data/derived/features/features_A_bandpower_epochwise.csv
     data/derived/features/features_B_wpli_edges_epoch_sliding.csv
     data/derived/montage_info.json                 (channel names)
-    results/models/best_params_rf_nested_groupkfold_Aepoch_BwpliEpochSliding.csv
+    results/models/best_params_nested_groupkfold_Aepoch_BwpliEpochSliding.csv
 Output:
     results/tables/feat_B_edge_importance_table.csv
 """
@@ -57,7 +61,12 @@ CH_NAMES = json.loads(c.MONTAGE_INFO_PATH.read_text())["ch_names"]
 # Saved hyper-parameters for model B
 # --------------------------------------------------------------------------- #
 params_df = pd.read_csv(c.PARAMS_MAIN_PATH)
-B_params = params_df[params_df["model"] == c.MODEL_B].copy()
+# Edge importance uses the RF feature_importances_, so select the RF rows only.
+B_params = params_df[(params_df["model"] == c.MODEL_B)
+                     & (params_df["estimator"] == "rf")].copy()
+assert len(B_params) == c.OUTER_SPLITS, (
+    f"expected {c.OUTER_SPLITS} RF folds for model B, got {len(B_params)}"
+)
 
 
 def _coerce(v):
