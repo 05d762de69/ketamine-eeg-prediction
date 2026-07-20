@@ -8,8 +8,6 @@ and how few electrodes are needed to do it. A subject-fingerprinting analysis
 explains *why* connectivity decodes poorly: the connectivity drug effect is
 largely idiosyncratic, whereas the power drug effect is shared across subjects.
 
-> **Status / placeholders.** Author, ORCID and affiliation are set in
-> [`CITATION.cff`](CITATION.cff); add the preprint/DOI there once available.
 
 ## Key findings
 
@@ -83,9 +81,12 @@ pip install -e .            # installs the `ketamine_eeg` package
 ## Data availability
 
 The raw EEG (10 subjects, eyes-closed/open recordings before and after
-ketamine) is **human-subject data and is not distributed in this repository**.
-It is available from the authors on reasonable request, subject to the relevant
-data-use agreement.
+ketamine) is **not redistributed in this repository**. It is openly available
+as the dataset from the original study — Farnes et al. (2020) — deposited on
+Dryad at
+[datadryad.org/dataset/doi:10.5061/dryad.j9kd51c9q](https://datadryad.org/dataset/doi:10.5061/dryad.j9kd51c9q)
+(DOI: [10.5061/dryad.j9kd51c9q](https://doi.org/10.5061/dryad.j9kd51c9q)). To
+run the raw-EEG stages, download the recordings from Dryad into `data/raw/`.
 
 Everything needed to reproduce the published results **without the raw data**
 is tracked under `data/derived/` (the extracted feature tables, the dense wPLI
